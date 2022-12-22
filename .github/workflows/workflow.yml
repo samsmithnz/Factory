@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Build job
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
       Version: ${{ steps.gitversion.outputs.SemVer }}
       CommitsSinceVersionSource: ${{ steps.gitversion.outputs.CommitsSinceVersionSource }}
@@ -34,6 +34,7 @@ jobs:
         dotnet-version: 7.0.x
     - name: .NET test
       run: dotnet test src/Factory.Tests/Factory.Tests.csproj -c Debug -e:CollectCoverage=true -e:CoverletOutput=TestResults/ -e:CoverletOutputFormat=lcov 
+    - run: dir src/Factory.Tests/TestResults
     - name: Publish coverage report to coveralls.io
       uses: coverallsapp/github-action@master
       with:
