@@ -32,6 +32,24 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
+    - name: .NET publish
+      run: dotnet publish src/Factory/Factory.csproj -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}'
+    - name: Upload package back to GitHub
+      uses: actions/upload-artifact@v3
+      with:
+        name: drop
+        path: src/Factory/bin/Release
+
+
+  test:
+    name: test job
+    runs-on: ubuntu-latest    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
     - name: .NET test
       run: dotnet test src/Factory.Tests/Factory.Tests.csproj -c Debug -e:CollectCoverage=true -e:CoverletOutput=TestResults/ -e:CoverletOutputFormat=lcov 
     - run: dir src/Factory.Tests/TestResults
@@ -40,13 +58,6 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: src/Factory.Tests/TestResults/coverage.info 
-    - name: .NET publish
-      run: dotnet publish src/Factory/Factory.csproj -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}'
-    - name: Upload package back to GitHub
-      uses: actions/upload-artifact@v3
-      with:
-        name: drop
-        path: src/Factory/bin/Release
      
      
   sonarCloud:
@@ -68,6 +79,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
     - build
+    - test
     - sonarCloud
     if: github.ref == 'refs/heads/main'      
     steps:
