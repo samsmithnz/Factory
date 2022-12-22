@@ -1,5 +1,8 @@
 # Factory
 [![CI/CD](https://github.com/samsmithnz/Factory/actions/workflows/workflow.yml/badge.svg)](https://github.com/samsmithnz/Factory/actions/workflows/workflow.yml)
+[![Coverage Status](https://coveralls.io/repos/github/samsmithnz/Factory/badge.svg?branch=main)](https://coveralls.io/github/samsmithnz/Factory?branch=main)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=samsmithnz_Factory&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=samsmithnz_Factory)
+[![Current Release](https://img.shields.io/github/release/samsmithnz/Factory/all.svg)](https://github.com/samsmithnz/Factory/releases)
 
 A factory simulator, simular to the games Factorio, Satisfactory, and Dyson Sphere Program.
 
