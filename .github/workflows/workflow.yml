@@ -33,7 +33,12 @@ jobs:
       with:
         dotnet-version: 7.0.x
     - name: .NET test
-      run: dotnet test src/Factory.Tests/Factory.Tests.csproj -c Release
+      run: dotnet test src/Factory.Tests/Factory.Tests.csproj -c Debug --logger trx -e:CollectCoverage=true -e:CoverletOutput=TestResults/ -e:CoverletOutputFormat=lcov --settings:./src/DevOpsMetrics.Tests/CodeCoverage.runsettings 
+    - name: Publish coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: src/Factory.Tests/TestResults/coverage.info 
     - name: .NET publish
       run: dotnet publish src/Factory/Factory.csproj -c Release -p:Version='${{ steps.gitversion.outputs.SemVer }}'
     - name: Upload package back to GitHub
