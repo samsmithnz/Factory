@@ -10,6 +10,7 @@ public class UnitTest1
         Class1 class1 = new();
 
         //Act
+        class1.HelloWorld();
 
         //Assert
         Assert.IsNotNull(class1);
