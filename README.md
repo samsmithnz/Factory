@@ -1,4 +1,4 @@
-# Factory
+# Factory - don't use this project
 [![CI/CD](https://github.com/samsmithnz/Factory/actions/workflows/workflow.yml/badge.svg)](https://github.com/samsmithnz/Factory/actions/workflows/workflow.yml)
 [![Coverage Status](https://coveralls.io/repos/github/samsmithnz/Factory/badge.svg?branch=main)](https://coveralls.io/github/samsmithnz/Factory?branch=main)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=samsmithnz_Factory&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=samsmithnz_Factory)
